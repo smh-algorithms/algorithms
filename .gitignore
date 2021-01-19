@@ -1,0 +1,13 @@
+# Everything 
+/*
+# but not the following.
+
+# Project config
+!.all-contributorsrc
+!.gitignore
+!LICENSE
+!README.md
+
+# Sources
+!docs/
+!src/

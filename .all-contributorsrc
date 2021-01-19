@@ -1,0 +1,10 @@
+{
+  "projetName": "hyperthink",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": ["README.md"],
+  "contributorsPerLine": 7,
+  "contributorsSortAlphabetically": true,
+  "skipCi": "true",
+  "contributors": []
+}
