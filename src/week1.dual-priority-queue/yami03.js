@@ -1,31 +1,13 @@
 function solution(operations) {
-  const data = {
-    list: [],
-    maxValueDeleteCount: 0,
-    minValueDeleteCount: 0,
-  };
-
+  const list = [];
   operations.forEach((el) => {
-    if (el === "D 1") {
-      data.maxValueDeleteCount++;
-    } else if (el === "D -1") {
-      data.minValueDeleteCount++;
+    if (el === "D 1" && list.length) {
+      list.splice(list.indexOf(Math.max(...list)))
+    } else if (el === "D -1" && list.length) {
+      list.splice(list.indexOf(Math.min(...list)))
     } else {
-      data.list.push(Number(el.slice(2)));
+      list.push(Number(el.slice(2)));
     }
   });
-
-  data.list.sort((a, b) => a - b);
-
-  const newList = data.list.slice(
-    data.minValueDeleteCount,
-    -data.maxValueDeleteCount + 1
-  );
-
-  if(newList.length >= 2) {
-    return [newList[newList.length - 1], newList[0]]
-  } else if (newList.length){
-    return newList[0] > 0 ? [newList[0], 0] : [0, newList[0]]
-  }
-  return [0, 0];
+  return list.length ? [Math.max(...list), Math.min(...list)] : [0,0]
 }
