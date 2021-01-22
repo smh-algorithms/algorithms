@@ -35,11 +35,11 @@ guild
 
 ## 입출력 예제
 
-| words                    | result |
-| ------------------------ | ------ |
-| [go,gone,guild]          | 7      |
-| [abc,def,ghi,jklm]       | 4      |
-| [word,war,warrior,world] | 15     |
+| words                            | result |
+| -------------------------------- | ------ |
+| ['go','gone','guild']            | 7      |
+| ['abc','def','ghi','jklm']       | 4      |
+| ['word','war','warrior','world'] | 15     |
 
 ## 입출력 설명
 

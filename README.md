@@ -16,7 +16,7 @@
 - 나만의 git 브랜치를 만들어 작업해 주세요.
 - 일부 경로를 제외한 모든 파일은 `gitignore`되어 있습니다! :clap: 내게 맞는 개발 환경을 로컬에 구성해 보세요.
 
-## 문제는 PR을 통해 제출합니다.
+## 답안은 PR을 통해 제출합니다.
 
 풀고 난 문제는 [pull request](https://github.com/smh-algorithms/algorithms/compare)를 통해 제출해 주세요.
 
