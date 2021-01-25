@@ -38,5 +38,5 @@ Output: "/c"
 ## Constraints:
 
 - `1 <= path.length <= 3000`
-- path consists of English letters, digits, period `'.'`, slash '/' or `'\_'`.
+- path consists of English letters, digits, period `'.'`, slash `'/'` or `'_'`.
 - path is a valid Unix path.
