@@ -10,12 +10,8 @@ import java.util.StringTokenizer;
 
 //메모리 : 54152KB , 시간 1480ms
 public class Main {
-	public static void main(String[] args) {
-		try {
-			entryLogs();
-		}catch(Exception e) {
-			
-		}
+	public static void main(String[] args) throws Exception {
+		entryLogs();
 	}
 	
 	public static void entryLogs() throws IOException {
