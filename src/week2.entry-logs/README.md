@@ -22,24 +22,16 @@
 ## 예제 입력
 
 ```
-2
-3
-Fred Barney
-Barney Betty
-Betty Wilma
-3
-Fred Barney
-Betty Wilma
-Barney Betty
+4
+Baha enter
+Askar enter
+Baha leave
+Artem enter
 ```
 
 ## 예제 출력
 
 ```
-2
-3
-4
-2
-2
-4
+Askar
+Artem
 ```
