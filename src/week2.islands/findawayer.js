@@ -1,7 +1,7 @@
 // 육지를 나타내는 글자
 const NODE_GROUND = '0';
 
-function solve(mapString) {
+function countIslands(mapString) {
   const table = mapString.split('\n');
   // 방문한 노드를 boolean으로 저장한 매트릭스
   const visited = table.map(row => new Array(row.length).fill(false));
@@ -131,7 +131,7 @@ describe('islands', () => {
   ].map(([temp, output]) => [dedent(temp), output]);
 
   test.each(cases)('returns $output from $input', (input, output) => {
-    expect(solve(input)).toBe(output);
+    expect(countIslands(input)).toBe(output);
   });
 });
 
