@@ -1,5 +1,7 @@
 ## 문제
 
+> 출처: https://www.codewars.com/kata/5611e038a1b7990def000076/javascript (Codewars, 난이도: 6kyu)
+
 2차원 지도를 나타내는 string에서, 섬의 개수가 몇 개인지 찾아주세요!
 
 주어진 string에는 다음과 같은 규칙이 있습니다.

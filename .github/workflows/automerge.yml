@@ -2,8 +2,8 @@ name: auto merge PRs
 
 on:
   schedule:
-    # Every sunday at 9AM KST (0AM UTC)
-    - cron: "0 0 * * 0"
+    # Every sunday at 1600 KST (7AM UTC)
+    - cron: '0 0 * * 7'
 
 jobs:
   automerge:
@@ -11,12 +11,12 @@ jobs:
     steps:
       # https://github.com/marketplace/actions/merge-pull-requests
       - name: automerge
-        uses: "pascalgn/automerge-action@v0.13.0"
+        uses: 'pascalgn/automerge-action@v0.13.0'
         env:
-          MERGE_LABELS: ""
-          MERGE_METHOD: "squash"
-          MERGE_COMMIT_MESSAGE: "pull-request-title"
+          MERGE_LABELS: ''
+          MERGE_METHOD: 'squash'
+          MERGE_COMMIT_MESSAGE: 'pull-request-title'
           MERGE_DELETE_BRANCH: false
-          UPDATE_LABELS: ""
-          UPDATE_METHOD: "merge"
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          UPDATE_LABELS: ''
+          UPDATE_METHOD: 'merge'
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
