@@ -43,7 +43,7 @@
 
 ## 관련 링크
 
-- [Slack 채널](smcalgos.slack.com)에 커뮤니티가 만들어져 있습니다. 다른 참여자들과 함께 이야기를 나눠 보세요!
+- [Slack 채널](https://smcalgos.slack.com)에 커뮤니티가 만들어져 있습니다. 다른 참여자들과 함께 이야기를 나눠 보세요!
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
