@@ -1,3 +1,5 @@
+// https://programmers.co.kr/learn/courses/30/lessons/72412
+
 // 정확성  테스트
 // 테스트 1 〉	통과 (0.90ms, 29.8MB)
 // 테스트 2 〉	통과 (0.64ms, 30.1MB)
