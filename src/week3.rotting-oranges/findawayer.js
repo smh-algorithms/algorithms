@@ -10,10 +10,15 @@
 // Runtime: 96 ms, faster than 57.59% of JavaScript online submissions for Rotting Oranges.
 // Memory Usage: 41.3 MB, less than 34.63% of JavaScript online submissions for Rotting Oranges.
 
-// BFS 검색
+// v4: https://leetcode.com/submissions/detail/452313850/
+// Runtime: 88 ms, faster than 88.61% of JavaScript online submissions for Rotting Oranges.
+// Memory Usage: 41 MB, less than 57.53% of JavaScript online submissions for Rotting Oranges.
+
 function orangesRotting(grid) {
-  // 맨 처음 썩어 있는 오렌지
+  // BFS 검색 큐
   const queue = [];
+  // 위 큐의 현재 노드를 가리키는 포인터
+  let tail = 0;
   // 신선한 오렌지
   let fresh = 0;
   // 전염에 걸린 시간
@@ -35,8 +40,8 @@ function orangesRotting(grid) {
     });
   });
 
-  while (queue.length) {
-    const { x, y, time } = queue.shift();
+  while (tail < queue.length) {
+    const { x, y, time } = queue[tail];
 
     for (const { dx, dy } of offsets) {
       const tx = x + dx;
@@ -50,6 +55,7 @@ function orangesRotting(grid) {
     }
 
     depth = time;
+    tail += 1;
   }
 
   return fresh ? -1 : depth;
