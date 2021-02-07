@@ -2,29 +2,29 @@
 
 // v2
 // 정확성  테스트
-// 테스트 1 〉	통과 (0.91ms, 30.2MB)
-// 테스트 2 〉	통과 (0.92ms, 30MB)
-// 테스트 3 〉	통과 (1.03ms, 30.3MB)
-// 테스트 4 〉	통과 (2.37ms, 30.3MB)
-// 테스트 5 〉	통과 (4.91ms, 32.9MB)
-// 테스트 6 〉	통과 (8.33ms, 33.3MB)
-// 테스트 7 〉	통과 (7.54ms, 33.3MB)
-// 테스트 8 〉	통과 (45.85ms, 36MB)
-// 테스트 9 〉	통과 (63.49ms, 36.4MB)
-// 테스트 10 〉	통과 (54.93ms, 36.8MB)
-// 테스트 11 〉	통과 (5.22ms, 32.5MB)
-// 테스트 12 〉	통과 (8.80ms, 33.3MB)
-// 테스트 13 〉	통과 (7.85ms, 32.9MB)
-// 테스트 14 〉	통과 (34.23ms, 36.2MB)
-// 테스트 15 〉	통과 (36.54ms, 35.7MB)
-// 테스트 16 〉	통과 (4.62ms, 33.6MB)
-// 테스트 17 〉	통과 (8.42ms, 33.2MB)
-// 테스트 18 〉	통과 (35.05ms, 35.5MB)
+// 테스트 1 〉	통과 (0.92ms, 29.9MB)
+// 테스트 2 〉	통과 (0.98ms, 30.1MB)
+// 테스트 3 〉	통과 (1.09ms, 30MB)
+// 테스트 4 〉	통과 (3.56ms, 32MB)
+// 테스트 5 〉	통과 (18.21ms, 34MB)
+// 테스트 6 〉	통과 (49.91ms, 35.4MB)
+// 테스트 7 〉	통과 (7.41ms, 34.1MB)
+// 테스트 8 〉	통과 (64.87ms, 36.3MB)
+// 테스트 9 〉	통과 (62.38ms, 38.3MB)
+// 테스트 10 〉	통과 (52.72ms, 37.8MB)
+// 테스트 11 〉	통과 (7.01ms, 32.6MB)
+// 테스트 12 〉	통과 (13.52ms, 35.2MB)
+// 테스트 13 〉	통과 (7.41ms, 34MB)
+// 테스트 14 〉	통과 (27.04ms, 35.7MB)
+// 테스트 15 〉	통과 (42.86ms, 36.7MB)
+// 테스트 16 〉	통과 (4.75ms, 33.8MB)
+// 테스트 17 〉	통과 (13.34ms, 34.8MB)
+// 테스트 18 〉	통과 (26.54ms, 35.6MB)
 // 효율성  테스트
-// 테스트 1 〉	통과 (664.07ms, 103MB)
-// 테스트 2 〉	통과 (650.68ms, 102MB)
-// 테스트 3 〉	통과 (1691.53ms, 94.4MB)
-// 테스트 4 〉	실패 (시간 초과)
+// 테스트 1 〉	통과 (479.03ms, 103MB)
+// 테스트 2 〉	통과 (454.52ms, 103MB)
+// 테스트 3 〉	통과 (450.36ms, 96.8MB)
+// 테스트 4 〉	통과 (433.40ms, 96MB)
 
 // 가능한 모든 쿼리 값의 칼럼별 모음
 const columns = [
@@ -36,10 +36,10 @@ const columns = [
 
 function solution(entries, queries) {
   // 모든 종류의 쿼리에 대응하는 점수들의 배열
-  const db = [...new Array(108)].map(() => []);
+  const db = new Array(108);
 
   // 엔트리 값에 대응하는 칼럼 그리고 -에 점수를 중복 삽입
-  for (const entry of entries) {
+  entries.forEach(entry => {
     const chunks = entry.split(' ');
     const [a, b, c, d] = toColumnIndice(chunks);
     const score = +chunks[4];
@@ -47,26 +47,25 @@ function solution(entries, queries) {
     for (const $a of [0, a])
       for (const $b of [0, b])
         for (const $c of [0, c])
-          for (const $d of [0, d])
-            db[$a * 27 + $b * 9 + $c * 3 + $d].push(score);
-  }
+          for (const $d of [0, d]) {
+            const key = 27 * $a + 9 * $b + 3 * $c + $d;
+            if (!(key in db)) db[key] = [];
+            db[key].push(score);
+          }
+  });
 
-  // 점수들을 내림차순으로 정렬
-  db.forEach(scores => scores.sort((a, z) => z - a));
+  // 점수들을 오름차순으로 정렬
+  db.forEach(scores => scores.sort((a, z) => a - z));
 
   // 쿼리
-  const result = [];
-
-  for (const query of queries) {
+  return queries.map(query => {
     const chunks = query.match(/(-|\b(?!and)\w+\b)/g); // words or -
     const [a, b, c, d] = toColumnIndice(chunks);
     const score = +chunks[4];
     const key = 27 * a + 9 * b + 3 * c + d;
-    const length = gteLength(db[key], score);
-    result.push(length);
-  }
-
-  return result;
+    const scores = db[key];
+    return key in db ? scores.length - closestIndex(scores, score) : 0;
+  });
 }
 
 // 데이터 모음을 DB의 각 칼럼 내의 index로 변환
@@ -79,11 +78,18 @@ function toColumnIndice(values) {
   return output;
 }
 
-// 내림차순으로 정렬된 배열에서 selector보다 크거나 같은 원소의 갯수를 반환
-function gteLength(array, selector) {
-  let i = array.length - 1;
-  while (i >= 0 && array[i] < selector) i -= 1;
-  return i + 1;
+// 오름차순으로 정렬된 배열에서 selector보다 크거나 같은 원소의 갯수를 반환
+function closestIndex(array, selector) {
+  let left = 0;
+  let right = array.length - 1;
+
+  while (left <= right) {
+    const middle = ((left + right) / 2) | 0;
+    if (array[middle] < selector) left = middle + 1;
+    else right = middle - 1;
+  }
+
+  return left;
 }
 
 // v1
