@@ -1,6 +1,6 @@
 # 카드 짝 맞추기
 
-> 출처: https://programmers.co.kr/learn/courses/30/lessons/72412 (프로그래머스, 난이도 보통)
+> 출처: https://programmers.co.kr/learn/courses/30/lessons/72415 (프로그래머스, 난이도 보통)
 
 ## 문제 설명
 
