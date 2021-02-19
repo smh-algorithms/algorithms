@@ -11,8 +11,11 @@
 function calculateSpeed(length, distances) {
   let speed = distances[length - 1];
 
+  // 최초 속도를 역산하기 위해 도착 지점에서부터 거꾸로 루프
   for (let i = length - 2; i >= 0; i -= 1) {
     const current = distances[i];
+    // 기존 속도를 x, 현재 검색하는 속도를 y라 할 때
+    // x보다 크거나 같으면서 y로 나눌 수 있는 숫자를 찾음
     const remains = (speed + current) % current;
     if (remains) speed = speed + current - remains;
   }

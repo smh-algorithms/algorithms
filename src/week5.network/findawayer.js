@@ -21,6 +21,7 @@ function solution(n, computers) {
   const dfs = node => {
     visited[node] = true;
     for (let i = 0; i < n; i += 1) {
+      // 이미 체크한 컴퓨터, 값이 0인 컴퓨터 제외
       if (!visited[i] && computers[node][i]) dfs(i);
     }
   };

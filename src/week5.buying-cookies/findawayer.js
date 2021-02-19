@@ -45,15 +45,18 @@ function solution(cookies) {
 
   let max = 0;
 
+  // 모든 지점 i에서 시작해 양쪽으로 확산하면서 조건에 맞는 범위를 찾음
   for (let i = 0, stop = length - 1; i < stop; i += 1) {
     let left = i;
     let right = i + 1;
     let leftSum = cookies[left];
     let rightSum = cookies[right];
 
+    // 배열의 양 끄트머리를 벗어나지 않는 한계 내에서
     while (0 <= left && right < length) {
+      // 새로운 최대값을 찾을 때마다 max를 갱신
       if (leftSum === rightSum && leftSum > max) max = leftSum;
-
+      // 쿠키를 덜 가진 쪽에게 쿠키를 더 배분
       if (leftSum >= rightSum && 0 <= left) rightSum += cookies[++right];
       else if (rightSum >= leftSum && right < length) leftSum += cookies[--left];
     }
