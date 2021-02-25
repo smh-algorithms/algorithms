@@ -1,4 +1,4 @@
-> 출처: https://www.youtube.com/results?search_query=Paradoxical+tournaments (LeetCode, 난이도 medium)
+> 출처: https://leetcode.com/problems/decode-string/ (LeetCode, 난이도 medium)
 
 Given an encoded string, return its decoded string.
 
