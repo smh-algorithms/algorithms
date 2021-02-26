@@ -61,7 +61,7 @@ describe('minimum-window-substring', () => {
     ${'a'}             | ${'a'}   | ${'a'}
     ${'abc'}           | ${'ac'}  | ${'abc'}
     ${'bbaa'}          | ${'aba'} | ${'baa'}
-  `('returns $output from $input', ({ input, output }) => {
-    expect(minWindow(input)).toBe(output);
+  `('returns $output from $s', ({ s, t, output }) => {
+    expect(minWindow(s, t)).toBe(output);
   });
 });
