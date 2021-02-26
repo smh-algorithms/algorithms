@@ -17,10 +17,10 @@ const decodeString = s => {
       const char = str[i];
 
       // 숫자
-      if (~NUMBERS.indexOf(char)) {
+      if (NUMBERS.includes(char)) {
         // 이어지는 숫자를 모두 선택
         let times = char;
-        while (~NUMBERS.indexOf(str[++i])) times += str[i];
+        while (NUMBERS.includes(str[++i])) times += str[i];
         // 숫자 다음에 오는 여는 괄호 스킵
         i += 1;
         // 반복된 서브문자열을 재귀해서 탐색
