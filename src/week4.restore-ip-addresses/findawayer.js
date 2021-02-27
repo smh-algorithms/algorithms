@@ -6,12 +6,8 @@ const restoreIpAddresses = string => {
   const { length } = string;
   const found = [];
 
-  find();
-
-  return found;
-
   // DFS
-  function find(start = 0, count = 0, address = '') {
+  const find = (start = 0, count = 0, address = '') => {
     // 탐색이 완료됨
     if (start === length) {
       // 유효한 4조각의 문자열이 완성되었다면 found 배열에 추가
@@ -32,13 +28,17 @@ const restoreIpAddresses = string => {
         find(start + i, count + 1, address ? `${address}.${segment}` : segment);
       i += 1;
     }
-  }
+  };
 
   // 0으로 시작하는 두 자리 이상의 숫자가 아니며, 최대값 255 이하의 숫자
   // 인풋 문자열 `string`은 숫자들로만 이뤄져 있으므로 최소값 0은 검사할 필요가 없음
-  function isValidSegment(segment) {
+  const isValidSegment = segment => {
     return segment[0] === '0' ? segment.length === 1 : +segment <= 255;
-  }
+  };
+
+  find();
+
+  return found;
 };
 
 describe('restore-ip-addresses', () => {

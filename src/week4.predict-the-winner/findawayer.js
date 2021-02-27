@@ -5,9 +5,7 @@
 const PredictTheWinner = numbers => {
   if (numbers.length <= 2) return true;
 
-  return takeMax(0, numbers.length - 1) >= 0;
-
-  function takeMax(left, right, turn = 1) {
+  const takeMax = (left, right, turn = 1) => {
     if (left === right) return turn * numbers[left];
 
     const nextTurn = turn * -1;
@@ -15,7 +13,9 @@ const PredictTheWinner = numbers => {
     const beta = turn * numbers[right] + takeMax(left, right - 1, nextTurn);
 
     return turn === 1 ? Math.max(alpha, beta) : Math.min(alpha, beta);
-  }
+  };
+
+  return takeMax(0, numbers.length - 1) >= 0;
 };
 
 describe('predict-the-winner', () => {

@@ -3,20 +3,14 @@
 // Memory Usage: 41.7 MB, less than 73.42% of JavaScript online submissions for Word Search.
 
 const exist = (board, word) => {
-  const wordLength = word.length;
-  const rowLength = board.length;
-  const colLength = board[0].length;
-
-  for (let row = 0; row < rowLength; row += 1) {
-    for (let col = 0; col < colLength; col += 1) {
-      if (searchNext(row, col, 0)) return true;
-    }
-  }
-
-  return false;
+  const { length: wordLength } = word;
+  const {
+    length: rowLength,
+    0: { length: colLength },
+  } = board;
 
   // DFS: 수평 혹은 수직 이동으로 `word`를 만들 수 있는지 탐색
-  function searchNext(row, col, index) {
+  const searchNext = (row, col, index) => {
     // 재귀 중단 조건식: `word`와 같은 길이만큼 검색함
     if (index === wordLength) return true;
     // `board` 그리드를 벗어난 좌표, 혹은 이미 방문한 좌표
@@ -35,7 +29,12 @@ const exist = (board, word) => {
     board[row][col] = word[index];
     // 끝까지 찾아내지 못했을 경우 false 반환
     return matches;
-  }
+  };
+
+  for (let row = 0; row < rowLength; row += 1)
+    for (let col = 0; col < colLength; col += 1) if (searchNext(row, col, 0)) return true;
+
+  return false;
 };
 
 // v1

@@ -29,6 +29,21 @@ function solution(orders, course) {
   // 생성된 후보들
   const answer = new Set();
 
+  // 주어진 주문으로 만들 수 있는 모든 조합의 주문횟수를 계산 (백트래킹)
+  const countOrder = (order, courseSize, index = 0, candidate = '') => {
+    if (candidate.length === courseSize) {
+      candidates[candidate] = candidates[candidate] + 1 || 1;
+      return;
+    }
+
+    for (let i = index, { length } = order; i < length; i += 1) {
+      if (seen[i]) continue;
+      seen[i] = true;
+      countOrder(order, courseSize, i + 1, candidate + order[i]);
+      seen[i] = false;
+    }
+  };
+
   // 주문을 모두 사전순으로 정렬
   orders = orders.map(order => order.split('').sort().join(''));
 
@@ -52,21 +67,6 @@ function solution(orders, course) {
 
   // 배열로 전환하고 사전순 정렬
   return [...answer].sort();
-
-  // 주어진 주문으로 만들 수 있는 모든 조합의 주문횟수를 계산 (백트래킹)
-  function countOrder(order, courseSize, index = 0, candidate = '') {
-    if (candidate.length === courseSize) {
-      candidates[candidate] = candidates[candidate] + 1 || 1;
-      return;
-    }
-
-    for (let i = index, { length } = order; i < length; i += 1) {
-      if (seen[i]) continue;
-      seen[i] = true;
-      countOrder(order, courseSize, i + 1, candidate + order[i]);
-      seen[i] = false;
-    }
-  }
 }
 
 describe('menu-renewal', () => {

@@ -3,28 +3,23 @@
 function permAlone(str) {
   const REPETING_PATTERN = /(.)\1+/;
   const { length } = str;
-  const seen = {};
-  let count = 0;
 
-  find();
+  const dfs = (substr = '', seen = {}) => {
+    if (substr.length === length) return !REPETING_PATTERN.test(substr);
 
-  return count;
-
-  // DFS
-  function find(substr = '') {
-    if (substr.length === length && !REPETING_PATTERN.test(substr)) {
-      count += 1;
-      return;
-    }
+    let count = 0;
 
     for (let i = 0; i < length; i += 1) {
       if (seen[i]) continue;
-
       seen[i] = true;
-      find(substr + str[i]);
+      count += dfs(substr + str[i], seen);
       seen[i] = false;
     }
-  }
+
+    return count;
+  };
+
+  return dfs();
 }
 
 describe('no-repeat-please', () => {
