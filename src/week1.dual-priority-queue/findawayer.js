@@ -11,7 +11,7 @@ function solution(operations) {
   const memory = [];
   // 최대값 X, 최소값, Y로 이뤄진 배열 [X, Y]
   // 어떤 값을 넣어도 갱신되는 플레이스홀더 사용
-  const output = [Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY];
+  const output = [-Infinity, Infinity];
   const INSERT_COMMAND = 'I';
   const DELETE_MINIMUM_COMMAND = 'D -1';
 
@@ -39,11 +39,7 @@ function solution(operations) {
   }
 
   // 남아있는 원소가 없으면 [0, 0] 반환
-  if (!memory.length) {
-    return [0, 0];
-  }
-
-  return output;
+  return memory.length ? output : [0, 0];
 }
 
 describe('dual-priority-queue', () => {

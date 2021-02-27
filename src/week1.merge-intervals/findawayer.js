@@ -8,7 +8,7 @@ function solution(intervals) {
   intervals.sort(([aStart], [bStart]) => aStart - bStart);
 
   // 가장 작은 시작값을 가진 범위를 기준으로 스택을 만들고
-  let top = intervals[0];
+  let [top] = intervals;
   const merged = [top];
   let current;
 
