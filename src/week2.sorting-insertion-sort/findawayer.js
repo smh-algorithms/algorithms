@@ -12,7 +12,7 @@ function sort(array) {
 
     // 계속해 앞의 원소와 비교해 더 작다면 스왑
     while (j && array[j] < array[j - 1]) {
-      swap(j, j - 1);
+      swap(array, j, j - 1);
       j -= 1;
     }
 
