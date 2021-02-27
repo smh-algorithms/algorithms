@@ -1,30 +1,25 @@
 // https://programmers.co.kr/learn/courses/30/lessons/43165
 
-// 테스트 1 〉	통과 (16.79ms, 31.8MB)
-// 테스트 2 〉	통과 (16.35ms, 31.8MB)
-// 테스트 3 〉	통과 (0.37ms, 29.9MB)
-// 테스트 4 〉	통과 (1.68ms, 31.7MB)
-// 테스트 5 〉	통과 (2.84ms, 31.6MB)
-// 테스트 6 〉	통과 (0.63ms, 30MB)
-// 테스트 7 〉	통과 (0.36ms, 30.1MB)
-// 테스트 8 〉	통과 (2.73ms, 31.8MB)
+// 테스트 1 〉	통과 (35.33ms, 32.4MB)
+// 테스트 2 〉	통과 (19.31ms, 32.6MB)
+// 테스트 3 〉	통과 (0.37ms, 30MB)
+// 테스트 4 〉	통과 (16.15ms, 32.2MB)
+// 테스트 5 〉	통과 (2.97ms, 32.3MB)
+// 테스트 6 〉	통과 (0.65ms, 29.8MB)
+// 테스트 7 〉	통과 (0.37ms, 30.2MB)
+// 테스트 8 〉	통과 (2.66ms, 31.7MB)
 
 function solution(numbers, target) {
-  const { length } = numbers;
-  let count = 0;
+  const dfs = (index, length, sum) => {
+    if (index === length) return sum === target;
 
-  const search = (index = 0, sum = 0) => {
-    if (index === length) {
-      if (sum === target) count += 1;
-      return;
-    }
-    search(index + 1, sum + numbers[index]);
-    search(index + 1, sum - numbers[index]);
+    let count = 0;
+    count += dfs(index + 1, length, sum + numbers[index]);
+    count += dfs(index + 1, length, sum - numbers[index]);
+    return count;
   };
 
-  search();
-
-  return count;
+  return dfs(0, numbers.length, 0);
 }
 
 describe('target-number', () => {

@@ -33,10 +33,10 @@ const searchMatrix = (matrix, target) => {
 // const searchMatrix = (matrix, target) => {
 //   const queue = [[0, 0]];
 //   const offsets = [[1, 0], [0, 1]];
-//   let tail = 0;
+//   let head = 0;
 
-//   while (queue[tail]) {
-//     const [row, col] = queue[tail++];
+//   while (queue[head]) {
+//     const [row, col] = queue[head++];
 //     const current = matrix[row][col];
 
 //     if (current === target) return true;

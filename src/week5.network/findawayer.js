@@ -1,18 +1,18 @@
 // https://programmers.co.kr/learn/courses/30/lessons/43162
 
-// 테스트 1 〉	통과 (0.12ms, 30.1MB)
-// 테스트 2 〉	통과 (0.12ms, 30.2MB)
-// 테스트 3 〉	통과 (0.15ms, 29.9MB)
-// 테스트 4 〉	통과 (0.13ms, 30.1MB)
-// 테스트 5 〉	통과 (0.07ms, 30.2MB)
-// 테스트 6 〉	통과 (0.26ms, 30.1MB)
+// 테스트 1 〉	통과 (0.08ms, 30.1MB)
+// 테스트 2 〉	통과 (0.11ms, 30MB)
+// 테스트 3 〉	통과 (0.14ms, 30MB)
+// 테스트 4 〉	통과 (0.14ms, 30MB)
+// 테스트 5 〉	통과 (0.09ms, 30MB)
+// 테스트 6 〉	통과 (0.25ms, 29.8MB)
 // 테스트 7 〉	통과 (0.11ms, 30.1MB)
-// 테스트 8 〉	통과 (0.22ms, 30MB)
-// 테스트 9 〉	통과 (0.19ms, 30.1MB)
-// 테스트 10 〉	통과 (0.14ms, 29.9MB)
-// 테스트 11 〉	통과 (0.68ms, 30.2MB)
-// 테스트 12 〉	통과 (0.55ms, 30.2MB)
-// 테스트 13 〉	통과 (0.34ms, 29.8MB)
+// 테스트 8 〉	통과 (0.22ms, 30.1MB)
+// 테스트 9 〉	통과 (0.19ms, 29.9MB)
+// 테스트 10 〉	통과 (0.18ms, 29.9MB)
+// 테스트 11 〉	통과 (0.57ms, 30MB)
+// 테스트 12 〉	통과 (0.56ms, 30.2MB)
+// 테스트 13 〉	통과 (0.33ms, 30MB)
 
 function solution(n, computers) {
   let count = 0;
@@ -20,18 +20,14 @@ function solution(n, computers) {
 
   const dfs = node => {
     visited[node] = true;
-    for (let i = 0; i < n; i += 1) {
-      // 이미 체크한 컴퓨터, 값이 0인 컴퓨터 제외
-      if (!visited[i] && computers[node][i]) dfs(i);
-    }
+    // 방문하지 않은 컴퓨터와 네트워크를 갖고 있다면 재귀하면서 방문한 것으로 마킹
+    for (let i = 0; i < n; i += 1) if (!visited[i] && computers[node][i]) dfs(i);
+    // 네트워크 갯수를 증가
+    return 1;
   };
 
-  for (let i = 0; i < n; i += 1) {
-    if (!visited[i]) {
-      dfs(i);
-      count += 1;
-    }
-  }
+  // 각 컴퓨터를 순회하면서 DFS 실행
+  for (let i = 0; i < n; i += 1) if (!visited[i]) count += dfs(i);
 
   return count;
 }
