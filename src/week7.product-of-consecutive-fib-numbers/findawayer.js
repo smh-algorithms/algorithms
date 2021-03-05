@@ -16,6 +16,6 @@ describe('product-of-consecutive-fib-numbers', () => {
     ${714} | ${[21, 34, true]}
     ${800} | ${[34, 55, false]}
   `('returns $output from $input', ({ input, output }) => {
-    expect(solution(input)).toEqual(output);
+    expect(productFib(input)).toEqual(output);
   });
 });

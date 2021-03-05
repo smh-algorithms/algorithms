@@ -28,6 +28,6 @@ describe('most-profit-assigning-work', () => {
     ${[2, 4, 6, 8, 10]} | ${[10, 20, 30, 40, 50]} | ${[4, 5, 6, 7]} | ${100}
     ${[85, 47, 57]}     | ${[24, 66, 99]}         | ${[40, 25, 25]} | ${0}
   `('returns $output', ({ difficulty, profit, worker, output }) => {
-    expect(solution(difficulty, profit, worker)).toBe(output);
+    expect(maxProfitAssignment(difficulty, profit, worker)).toBe(output);
   });
 });
