@@ -21,7 +21,7 @@ function solution(routes) {
 
   routes.sort(([a1, a2], [z1, z2]) => (a1 === z1 ? a2 - z2 : a1 - z1));
 
-  for (let i = 1, p2 = routes[0][1], c1, c2; i < length; i += 1) {
+  for (let i = 1, [[, p2]] = routes, c1, c2; i < length; i += 1) {
     [c1, c2] = routes[i];
 
     if (c1 > p2) {
