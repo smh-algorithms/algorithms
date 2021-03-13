@@ -7,11 +7,14 @@ const canConstruct = (s, k) => {
   if (length === k) return true;
   if (length < k) return false;
 
+  // 문자열 `s`가 포함하는 글자의 출현 횟수를 해시맵으로 저장
   const chars = {};
   for (let i = 0, char = s[i]; i < length; char = s[++i]) {
     chars[char] = chars[char] + 1 || 1;
   }
 
+  // 홀수 횟수만큼 나타난 글자가 K와 같거나 작아야
+  // 모든 글자를 이용해 팰린드롬을 K만큼 생성 가능
   let odds = 0;
   for (const char in chars) {
     if (chars[char] & 1) odds += 1;

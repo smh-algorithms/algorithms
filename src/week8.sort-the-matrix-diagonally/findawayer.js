@@ -9,13 +9,14 @@ const diagonalSort = matrix => {
 
   if (!lastRow || !lastCol) return matrix;
 
-  // bottom up, (top right) -> (bottom left),
-  // excluding the outmost 2 nodes which don't need to be sorted.
+  // (우측 상단) -> (좌측 하단), 아래에서 위로 탐색,
+  // 정렬할 필요가 없는 꼭지점들은 제외
   let row = 1;
   let col = lastCol;
 
   while (col) {
     const offset = Math.min(row, col);
+    // TypedArray를 써서 빠르게 숫자 정렬
     new Int8Array(offset + 1)
       .map((_, i) => matrix[row - i][col - i])
       .sort()
@@ -23,9 +24,9 @@ const diagonalSort = matrix => {
         matrix[row - offset + i][col - offset + i] = value;
       });
     if (row !== lastRow) {
-      row += 1; // (top right) -> (bottom right)
+      row += 1; // (우측 상단) -> (우측 하단)
     } else {
-      col -= 1; // (bottom right) -> (bottom left)
+      col -= 1; // (좌측 하단) -> (좌측 하단)
     }
   }
 

@@ -9,19 +9,19 @@
 function solution(source, target, words) {
   if (!words.includes(target)) return 0;
 
-  // 1. build adjacency list of the words
+  // 1. 단어 사이의 인접목록을 생성
   const graph = { [source]: new Set() };
-  // 1-1. add uni-directional edges from source to target
+  // 1-1. `source`와 `words` 사이에 단방향 엣지를 추가
   for (const word of words) {
     graph[word] = new Set();
     if (areAdjacent(source, word)) {
       graph[source].add(word);
     }
   }
-  // 1-2. add bi-direcetional edges between words
+  // 1-2. `words` 사이에 양방향 엣지를 추가
   for (const word of words) {
     for (const $word of words) {
-      if (word === $word && graph[word].has($word)) continue;
+      if (word === $word || graph[word].has($word)) continue;
       if (areAdjacent(word, $word)) {
         graph[word].add($word);
         graph[$word].add(word);
@@ -29,7 +29,7 @@ function solution(source, target, words) {
     }
   }
 
-  // 2. find shortest route using DFS
+  // 2. DFS를 이용해 가장 짧은 경로의 길이를 찾음
   const queue = [[source, 0]];
   const visited = {};
   let head = 0;
@@ -54,7 +54,7 @@ function solution(source, target, words) {
   return shortest;
 }
 
-// test if two given words consist of same characters except one.
+// 문자열 `a`와 `b`가 1글자를 제외하고 모든 글자가 겹치는지 여부를 반환
 function areAdjacent(a, b) {
   let threshold = 0;
   let i = 0;

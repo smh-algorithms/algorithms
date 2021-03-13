@@ -13,19 +13,19 @@
 function solution(n) {
   const length = (n * (n + 1)) / 2;
   const array = new Array(length);
-  let [node, i, h] = [1, 0, 0]; // node, index, height
+  let [node, i, h] = [1, 0, 0]; // node, index, height(트리의 깊이 또는 점프할 거리)
 
   while (node <= length) {
-    // go down
+    // 아래로: +0, +1, +2, ..., +N만큼 점프
     while (i + h < length && !array[i + h]) {
       i += h++;
       array[i] = node++;
     }
-    // go right
+    // 오른쪽으로: +1만큼 점프
     while (i + 1 < length && !array[i + 1]) {
       array[++i] = node++;
     }
-    // go up
+    // 위로: -N, -(N-1), ..., -0만큼 점프
     while (i > h && !array[i - h]) {
       i -= h--;
       array[i] = node++;
