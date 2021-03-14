@@ -1,3 +1,5 @@
+> 출처: https://leetcode.com/problems/maximum-number-of-coins-you-can-get/ (LeetCode, 난이도 medium)
+
 ## Description
 
 There are 3n piles of coins of varying size, you and your friends will take piles of coins as follows:
