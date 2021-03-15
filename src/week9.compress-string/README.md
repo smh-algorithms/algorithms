@@ -1,4 +1,4 @@
-> 출처: https://programmers.co.kr/learn/courses/30/lessons/60057 (프로그래머스, 난이도 2)
+> 출처: https://programmers.co.kr/learn/courses/30/lessons/60057 (프로그래머스, 2020 KAKAO BLIND RECRUITMENT)
 
 ## 문제 설명
 
