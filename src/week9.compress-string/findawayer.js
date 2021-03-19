@@ -38,7 +38,7 @@ function solution(s) {
     let [template, repetitions, currentLength] = [s.substr(0, size), 0, 0];
 
     for (let i = size; i < length; i += size) {
-      let text = s.substr(i, size);
+      const text = s.substr(i, size);
       // 템플릿과 같은 문자열이 반복될 경우 그 횟수를 누적
       if (text === template) repetitions += 1;
       // 다른 문자열일 경우 누적된 반복횟수를 이용해 압축 문자열의 길이를 계산하고, 변수 리셋
