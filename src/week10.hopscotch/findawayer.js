@@ -26,7 +26,10 @@
 // 테스트 4 〉	통과 (21.35ms, 68.9MB)
 
 function solution(land) {
+  // 각 row에서 최선의 선택을 했을 때 누적값을 담은 DP 테이블
   let table = land[0].slice();
+  // 다음 row에서 column이 겹치지 않는 가장 큰 수를 골라,
+  // 그 시점의 스냅샷을 DP 테이블에 업데이트
   for (let i = 1, { length } = land; i < length; i += 1) {
     const temp = land[i].slice();
     for (let j = 0; j < 4; j += 1) {
@@ -35,6 +38,7 @@ function solution(land) {
     }
     table = temp;
   }
+  // 최종 스냅샷 중 값이 가장 큰 경우의 누적값을 반환
   return Math.max(...table);
 }
 

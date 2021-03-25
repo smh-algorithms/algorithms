@@ -25,15 +25,25 @@ function is_valid_tree(skill_tree, skill_order) {
   if (skill_tree === skill_order) return 1;
   let prev_index = Infinity;
   let has_match = false;
+  // 선행 스킬 순서가 AB라고 할 때
+  // A는 B의 선행스킬이지만 B는 A의 선행스킬이 아님
+  // 즉 가장 마지막에 배운 선행스킬이 dependency tree의 leaf node이므로,
+  // 선행스킬을 뒤에서부터 탐색 (탐욕법)
   for (let i = skill_order.length - 1; i >= 0; i -= 1) {
     let skill = skill_order[i];
     let index = skill_tree.indexOf(skill);
     if (index === -1) {
+      // 이미 선행스킬 중 배운 게 있는데
+      // 다음 선행스킬을 안 배웠다면 망한 스킬트리 => 0 반환
       if (has_match) return 0;
     } else {
+      // 다음 선행조건이 존재하지만
+      // 순서가 잘못됐다면 망한 스킬트리 => 0 반환
       if (index > prev_index) return 0;
+      // 순서가 맞다면 다음 선행스킬 탐색으로 넘어감
       prev_index = index;
     }
+    // 선행스킬을 배웠는지 확인
     has_match = has_match || index !== -1;
   }
   return 1;
