@@ -1,4 +1,4 @@
-> 출처: https://leetcode.com/problems/binary-search-tree-iterator/ (LeetCode, 난이도 easy)
+> 출처: https://leetcode.com/problems/binary-search-tree-iterator/ (LeetCode, 난이도 medium)
 
 ## Description
 
